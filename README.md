@@ -1,4 +1,4 @@
-# 🧩 API de Gestión de Usuarios - BCI
+# 🧩 API de Gestión de Usuarios - PRUEBA-BCI
 
 Este proyecto es una API RESTful construida con **Spring Boot** para gestionar usuarios de forma segura. Se implementan las operaciones básicas de CRUD y se protege mediante JWT.
 
