@@ -1,0 +1,187 @@
+openapi: 3.0.1
+info:
+  title: API de Gestión de Usuarios
+  version: "1.0.0"
+  description: API para la creación, consulta, actualización, eliminación y modificación de estado de usuarios.
+
+paths:
+  /management/v1/user:
+    post:
+      summary: Crear un nuevo usuario
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRequest'
+      responses:
+        '201':
+          description: Usuario creado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateUserResponse'
+
+    get:
+      summary: Obtener información del usuario autenticado
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+          description: Token JWT con prefijo "Bearer "
+      responses:
+        '200':
+          description: Información del usuario
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+
+    put:
+      summary: Actualizar información del usuario autenticado
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+          description: Token JWT con prefijo "Bearer "
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRequest'
+      responses:
+        '204':
+          description: Usuario actualizado exitosamente
+
+  /management/v1/user/state:
+    patch:
+      summary: Cambiar el estado del usuario autenticado
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+          description: Token JWT con prefijo "Bearer "
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EstadoRequest'
+      responses:
+        '204':
+          description: Estado del usuario actualizado
+
+  /management/v1/{id}:
+    delete:
+      summary: Eliminar un usuario
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+          description: Token JWT con prefijo "Bearer "
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '204':
+          description: Usuario eliminado
+
+components:
+  schemas:
+    UserRequest:
+      type: object
+      required:
+        - nombre
+        - correo
+        - contraseña
+        - telefonos
+      properties:
+        nombre:
+          type: string
+        correo:
+          type: string
+          format: email
+        contraseña:
+          type: string
+          format: password
+        telefonos:
+          type: array
+          items:
+            $ref: '#/components/schemas/Telefono'
+
+    CreateUserResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        created:
+          type: string
+          format: date-time
+        modified:
+          type: string
+          format: date-time
+        last_login:
+          type: string
+          format: date-time
+        token:
+          type: string
+        isactive:
+          type: boolean
+
+    UserResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        nombre:
+          type: string
+        correo:
+          type: string
+          format: email
+        created:
+          type: string
+          format: date-time
+        modified:
+          type: string
+          format: date-time
+        last_login:
+          type: string
+          format: date-time
+        isactive:
+          type: boolean
+        telefonos:
+          type: array
+          items:
+            $ref: '#/components/schemas/Telefono'
+
+    EstadoRequest:
+      type: object
+      required:
+        - isActive
+      properties:
+        isActive:
+          type: boolean
+
+    Telefono:
+      type: object
+      properties:
+        numero:
+          type: string
+        codigoCiudad:
+          type: string
+        codigoPais:
+          type: string

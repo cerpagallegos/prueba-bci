@@ -1,0 +1,144 @@
+{
+	"info": {
+		"_postman_id": "a23fe66e-5278-460c-9420-ef8077509964",
+		"name": "Prueba BCI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1938059"
+	},
+	"item": [
+		{
+			"name": "Creacion de Usuario",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Juan Rodriguez\",\r\n    \"correo\": \"juanro@driguezorg.com\",\r\n    \"contraseña\": \"123123123\",\r\n    \"telefonos\": [\r\n        {\r\n            \"numero\": \"1234567\",\r\n            \"codigoCiudad\": \"1\",\r\n            \"codigoPais\": \"57\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local}}/management/v1/user",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"management",
+						"v1",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Visualizar Usuario",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJjb3JyZW8iOiJqdWFucm9AZHJpZ3Vlem9yZy5jb20iLCJ1c3VhcmlvSWQiOiIzNjAzOWNjOS0wNTM1LTRkYWQtYmM0ZS02YWFlYzQzNzU4ZjkiLCJzdWIiOiJqdWFucm9AZHJpZ3Vlem9yZy5jb20iLCJpYXQiOjE3NTMxMjQwNzIsImV4cCI6MTc1MzEzNDA3Mn0.XT1ki2Xee3dpnU27AWSZhsWl6cnnqvi21mHLp6Xe1Gk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/management/v1/user",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"management",
+						"v1",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actulizar estado de Usuario",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJjb3JyZW8iOiJqdWFucm9AZHJpZ3Vlem9yZy5jb20iLCJ1c3VhcmlvSWQiOiIzNjAzOWNjOS0wNTM1LTRkYWQtYmM0ZS02YWFlYzQzNzU4ZjkiLCJzdWIiOiJqdWFucm9AZHJpZ3Vlem9yZy5jb20iLCJpYXQiOjE3NTMxMjQwNzIsImV4cCI6MTc1MzEzNDA3Mn0.XT1ki2Xee3dpnU27AWSZhsWl6cnnqvi21mHLp6Xe1Gk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"activo\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local}}/management/v1/user/state",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"management",
+						"v1",
+						"user",
+						"state"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar Usuario",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/management/v1/user",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"management",
+						"v1",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar Usuario",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/management/v1/user",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"management",
+						"v1",
+						"user"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
